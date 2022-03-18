@@ -30,7 +30,7 @@ variable "public_vm_count" {
 }
 
 variable "public_vm_subnets" {
-    type    =   map
+    type    =   list
 }
 
 variable "public_vm_name" {
@@ -53,7 +53,7 @@ variable "private_vm_count" {
 }
 
 variable "private_vm_subnets" {
-    type    =   map
+    type    =   list
 }
 
 variable "private_vm_name" {

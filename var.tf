@@ -61,7 +61,7 @@ variable "private_vm_name" {
     default =   "tf-server"
 }
 
-variable "is_create_loginkey" {
+variable "create_loginkey" {
     type    =   bool
     default =   true
 }
@@ -71,12 +71,12 @@ variable "loginkey_name" {
     default =   "loginkey_name"
 }
 
-variable "is_assign_public_ip" {
+variable "assign_public_ip" {
     type    =   bool
     default =   true
 }
 
-variable "is_set_password" {
+variable "set_password" {
     type    =   bool
     default =   true
 }

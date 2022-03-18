@@ -3,9 +3,9 @@ output "login_key_name"{
 }
 
 output "login_key"{
-    value = { for k, v in ncloud_login_key.loginkey : k => v.private_key if var.is_create_loginkey }
+    value = { for k, v in ncloud_login_key.loginkey : k => v.private_key if var.create_loginkey }
 }
 
 output "public_ip"{
-    value = { for k, v in ncloud_public_ip.public_ip : k => v.public_ip if var.is_assign_public_ip }
+    value = { for k, v in ncloud_public_ip.public_ip : k => v.public_ip if var.assign_public_ip }
 }

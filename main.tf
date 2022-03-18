@@ -57,7 +57,7 @@ resource "ncloud_server" "public_server" {
     server_image_product_code = data.ncloud_server_image.server_image.id
     server_product_code       = data.ncloud_server_product.public_product.id
     login_key_name            = var.loginkey_name
-    init_script_no            = var.is_set_password ? ncloud_init_script.init.0.id : ""
+    init_script_no            = var.set_password ? ncloud_init_script.init.0.id : ""
 
     depends_on                = [ncloud_login_key.loginkey,ncloud_init_script.init]
 }
@@ -69,18 +69,18 @@ resource "ncloud_server" "private_server" {
     server_image_product_code = data.ncloud_server_image.server_image.id
     server_product_code       = data.ncloud_server_product.private_product.id
     login_key_name            = var.loginkey_name
-    init_script_no            = var.is_set_password ? ncloud_init_script.init.0.id : ""
+    init_script_no            = var.set_password ? ncloud_init_script.init.0.id : ""
 
     depends_on                = [ncloud_login_key.loginkey,ncloud_init_script.init]
 }
 
 resource "ncloud_public_ip" "public_ip" {
-    for_each                  = { for k, v in ncloud_server.public_server : k => v.id if var.is_assign_public_ip }
+    for_each                  = { for k, v in ncloud_server.public_server : k => v.id if var.assign_public_ip }
     server_instance_no        = each.value
 }
 
 resource "ncloud_login_key" "loginkey" {
-    count                     = var.is_create_loginkey ? 1 : 0
+    count                     = var.create_loginkey ? 1 : 0
     key_name                  = var.loginkey_name
 
     provisioner "local-exec" {
@@ -92,7 +92,7 @@ resource "ncloud_login_key" "loginkey" {
 }
 
 resource "ncloud_init_script" "init" {
-    count                     = var.is_set_password ? 1 : 0
+    count                     = var.set_password ? 1 : 0
     name                      = "set-linux-password"
     content                   = "#!/usr/bin/bash \necho 'root:${var.init_password}' | chpasswd"
 }

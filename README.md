@@ -17,7 +17,7 @@ module "compute" {
     public_vm_name       =   "tf-public-server"
     public_vm_cpu        =   "2"
     public_vm_memory     =   "4GB"
-    public_product_type  =   "HICPU" // HICPU | STAND | HIMEM
+    public_product_type  =   "HICPU" # HICPU | STAND | HIMEM
     public_vm_subnets    =   { for key, val in module.vpc.public_subnet : key => val.id }
     public_vm_count      =   1
 
@@ -26,7 +26,7 @@ module "compute" {
     private_vm_name      =   "tf-private-server"
     private_vm_cpu       =   "2"
     private_vm_memory    =   "4GB"
-    private_product_type =   "HICPU" # HICPU / STAND / HIMEM
+    private_product_type =   "HICPU" # HICPU | STAND | HIMEM
     private_vm_subnets   =   { for key, val in module.vpc.private_subnet : key => val.id }
     private_vm_count     =   1
 

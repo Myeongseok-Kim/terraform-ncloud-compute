@@ -85,3 +85,12 @@ variable "init_password" {
     type    =   string
     default =   "P@ssw0rd"
 }
+
+variable "user_name" {
+    type    =   string
+    default =   "root"
+}
+
+variable "init_script" {
+    type    =   string
+}

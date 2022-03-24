@@ -93,6 +93,10 @@ resource "ncloud_login_key" "loginkey" {
 
 resource "ncloud_init_script" "init" {
     count                     = var.set_password ? 1 : 0
-    name                      = "set-linux-password"
-    content                   = "#!/usr/bin/bash \necho 'root:${var.init_password}' | chpasswd"
+    name                      = "tf-init-script"
+    content                   = <<-EOT
+    #!/usr/bin/bash 
+    echo '${var.user_name}:${var.init_password}' | chpasswd
+    ${var.init_script}
+    EOT
 }

@@ -1,4 +1,5 @@
 # Usage
+
 ```
 module "compute" {
 	source = "Myeongseok-Kim/vpc/ncloud"
@@ -9,6 +10,7 @@ module "compute" {
     loginkey_name        =   "tf-key"
     image_name           =   "CentOS 7.8 (64-bit)"
     set_password         =   false
+    user_name            =   "root"
     init_password        =   "P@ssw0rd"
 
 
